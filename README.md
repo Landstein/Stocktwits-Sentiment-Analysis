@@ -6,4 +6,4 @@
 
 ## To Do:
 
-Capture Sentiment Direction 
+Capture Sentiment Direction: Completed 
