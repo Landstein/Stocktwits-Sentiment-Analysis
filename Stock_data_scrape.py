@@ -177,6 +177,17 @@ schedule.every().day.at("9:30").do(main)
 schedule.every().day.at("13:30").do(main)
 schedule.every().day.at("15:55").do(main)
 
+# Code needed to ensure script doesn't run on holidays
+
+# holidays = [
+#     "month/day/year"
+# ]
+# today = datetime.date.today().strftime("%m/%d/%Y")
+# weekno = datetime.datetime.today().weekday()
+# if weekno in (6, 7):  # If Weekend
+#     return
+# elif today in holidays:  # If Holiday Today
+#     return
 
 while True:
     schedule.run_pending()
