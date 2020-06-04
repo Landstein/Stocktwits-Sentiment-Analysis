@@ -11,7 +11,8 @@ import config
 
 # need to pass through a list of all of the equities
 # The below code takes the series of tickers and puts it into a list format we can pass into the function
-stocks_df = pd.read_csv('/Users/eric/Projects/Stocktwits-Sentiment-Analysis/Newer Code /sentiment_stocks.csv')
+# Change the below location based on location
+stocks_df = pd.read_csv('sentiment_stocks.csv')
 stocks = stocks_df['Stock'].tolist()
 
 def ticker_sentiment(tickers):
