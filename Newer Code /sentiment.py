@@ -12,7 +12,7 @@ import config
 # need to pass through a list of all of the equities
 # The below code takes the series of tickers and puts it into a list format we can pass into the function
 # Change the below location based on location
-stocks_df = pd.read_csv('sentiment_stocks.csv')
+stocks_df = pd.read_csv('/home/ubuntu/sentiment/sentiment_stocks.csv')
 stocks = stocks_df['Stock'].tolist()
 
 def ticker_sentiment(tickers):
@@ -36,30 +36,6 @@ def ticker_sentiment(tickers):
             sentiment_list.append([ticker, date, hour, 0.0])
     return sentiment_list
 
-
-# def sentiment(stocks):
-#     # df = pd.read_csv('sentiment.csv')
-#     df_sentiment = pd.DataFrame()
-#     # if df.empty == False:
-#     if os.path.exists('sentiment.csv'):
-#         df = pd.read_csv('sentiment.csv',  index_col='Stock')
-#         stock_sentiments = ticker_sentiment(stocks)
-#         df_sentiment = pd.DataFrame(stock_sentiments, columns=['Stock', 'Date', 'Hour', 'Sentiment'])
-#         df_sentiment = df_sentiment.set_index('Stock')
-#         df = df.append(df_sentiment)
-#         df = df.drop_duplicates()
-#         df.to_csv('sentiment.csv')
-#         print('Committed to SQL')
-#         sql_commit(df_sentiment)
-#     else:
-#         stock_sentiments = ticker_sentiment(stocks)
-#         df = pd.DataFrame(stock_sentiments, columns=['Stock', 'Date', 'Hour', 'Sentiment'])
-#         df = df.set_index('Stock')
-#         df.to_csv('sentiment.csv')
-#         print('Committed to SQL')
-#         sql_commit(df)
-#     return df, df_sentiment
-
 def sentiment(stocks):
     stock_sentiments = ticker_sentiment(stocks)
     df_sentiment = pd.DataFrame(stock_sentiments, columns=['Stock', 'Date', 'Hour', 'Sentiment'])
@@ -79,7 +55,6 @@ def sql_commit(df):
     df.reset_index(inplace=True)
 
     df.to_sql('stock_sentiment', con=engine, if_exists='append', index=False)
-
 
 
 print('Starting Script')
